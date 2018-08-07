@@ -5,7 +5,7 @@ const mdb = require('./models');
 const api = require('./api');
 
 const { PORT } = process.env;
-const port = PORT ? PORT : 4000;
+const port = PORT ? PORT : 0;
 
 mdb.connect();
 
@@ -20,6 +20,6 @@ router.use('/api', api);
 
 app.use(router);
 
-app.listen(port, () => {
-    console.log(`server is running at port: ${port}`)
+let listener = app.listen(port, () => {
+    console.log(`server is running at port: ${listener.address().port}`)
 });
